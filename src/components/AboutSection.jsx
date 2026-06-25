@@ -133,7 +133,7 @@ export default function AboutSection({ onBack, onStart }) {
                   Founder
                 </p>
                 <div className="space-y-1.5">
-                  {["Singapore", "Grade 12 Student", "Tennis Coach", "Swimming Instructor"].map((tag) => (
+                  {["Singapore", "Grade 12 Student"].map((tag) => (
                     <span
                       key={tag}
                       className="block text-[11px] font-bold uppercase tracking-wider text-gray-500"
@@ -153,8 +153,8 @@ export default function AboutSection({ onBack, onStart }) {
                   <p>
                     Hi, I'm <strong className="text-sg-dark">Ria Anand</strong>, founder of
                     Sports Access Navigator. Sport has been a huge part of my life, from
-                    playing competitively myself, to coaching tennis for younger athletes,
-                    to teaching swimming to children from low-income families in Singapore.
+                    playing competitively myself, to helping coach tennis for younger athletes,
+                    to teaching swimming through local service to children from low-income families in Singapore.
                   </p>
                   <p>
                     Through these experiences, I saw the same reality from different sides:
