@@ -32,7 +32,6 @@ function toProfile(firebaseUser, provider, fallbackName) {
       fallbackName ||
       firebaseUser.displayName ||
       firebaseUser.email?.split("@")[0] ||
-      "Student",
     email: firebaseUser.email,
     avatar: firebaseUser.photoURL,
     provider,
@@ -57,8 +56,8 @@ export default function AuthPage({
 
   const copy = useMemo(
     () => ({
-      eyebrow: isSignup ? "Student Signup" : "Student Login",
-      title: isSignup ? "Create your student account" : "Welcome back",
+      eyebrow: isSignup ? "Signup" : "Login",
+      title: isSignup ? "Create your account" : "Welcome back",
       body: isSignup
         ? "Sign up to search sports funding schemes and save your results."
         : "Log in to continue your sports funding search.",
