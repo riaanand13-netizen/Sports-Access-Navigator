@@ -118,6 +118,69 @@ export default function AboutSection({ onBack, onStart }) {
           </div>
         </section>
 
+        {/* Founder */}
+        <section className="py-16 sm:py-20 bg-white border-y border-neutral-100">
+          <div className="max-w-4xl mx-auto px-5 sm:px-8">
+            <div className="grid lg:grid-cols-[220px_1fr] gap-10 lg:gap-14 items-start">
+              <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                <div className="w-28 h-28 bg-sg-blue flex items-center justify-center mb-4 flex-shrink-0">
+                  <span className="font-display font-black text-4xl text-white leading-none">R</span>
+                </div>
+                <h2 className="font-display font-black text-sg-dark text-2xl leading-tight mb-1">
+                  Ria Anand
+                </h2>
+                <p className="text-sg-blue text-xs font-black uppercase tracking-widest mb-3">
+                  Founder
+                </p>
+                <div className="space-y-1.5">
+                  {["Singapore", "Grade 12 Student", "Tennis Coach", "Swimming Instructor"].map((tag) => (
+                    <span
+                      key={tag}
+                      className="block text-[11px] font-bold uppercase tracking-wider text-gray-500"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <div className="section-eyebrow">About the Founder</div>
+                <h2 className="section-heading mb-6 text-balance">
+                  Built by someone who has seen both sides of the gap
+                </h2>
+                <div className="space-y-4 text-gray-600 text-base leading-relaxed text-justify">
+                  <p>
+                    Hi, I'm <strong className="text-sg-dark">Ria Anand</strong>, founder of
+                    Sports Access Navigator. Sport has been a huge part of my life, from
+                    playing competitively myself, to coaching tennis for younger athletes,
+                    to teaching swimming to children from low-income families in Singapore.
+                  </p>
+                  <p>
+                    Through these experiences, I saw the same reality from different sides:
+                    the opportunities sport can create, and the barriers that stop many
+                    children from accessing them. Coaching showed me how much talent exists
+                    in every community. Teaching swimming to families who couldn't easily
+                    afford lessons showed me how quickly cost becomes the reason a child
+                    stops playing.
+                  </p>
+                  <p>
+                    Singapore already has funding schemes to support young athletes, but the
+                    system is fragmented and hard to navigate. Many families who qualify
+                    simply don't know where to start, or give up before they find the
+                    right scheme.
+                  </p>
+                  <p className="font-semibold text-sg-dark">
+                    I created Sports Access Navigator to change that. A free, simple tool
+                    that helps families find sports funding in under two minutes, closing
+                    the gap between available funding and the families it's meant for.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Values */}
         <section className="py-16 sm:py-20 bg-white">
           <div className="max-w-4xl mx-auto px-5 sm:px-8">
