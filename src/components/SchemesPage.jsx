@@ -13,7 +13,7 @@ import {
   FileText,
   ChevronRight,
 } from "lucide-react";
-import { SCHEMES } from "../data/schemes";
+import { SCHEMES, SCHEME_CATEGORIES } from "../data/schemes";
 
 const RANK_CONFIG = {
   easy: {
@@ -39,12 +39,12 @@ const RANK_CONFIG = {
   hard: {
     label: "Competitive",
     shortLabel: "Competitive",
-    bg: "bg-red-50",
-    text: "text-red-800",
-    border: "border-red-200",
-    barColor: "bg-sg-red",
+    bg: "bg-blue-50",
+    text: "text-blue-800",
+    border: "border-indigo-200",
+    barColor: "bg-sg-blue",
     stars: 1,
-    dotColor: "bg-sg-red",
+    dotColor: "bg-sg-blue",
   },
 };
 
@@ -54,6 +54,19 @@ const FILTER_OPTIONS = [
   { label: "Moderate",     value: "medium" },
   { label: "Competitive",  value: "hard" },
 ];
+
+const CATEGORY_OPTIONS = [
+  { label: "All Categories",     value: "all" },
+  { label: "Direct Support",     value: "direct-support" },
+  { label: "Community Funding",  value: "community-funding" },
+  { label: "Disability Sport",   value: "disability-sport" },
+];
+
+const CATEGORY_BADGE = {
+  "direct-support":    "bg-blue-50 text-blue-800 border-blue-100",
+  "community-funding": "bg-purple-50 text-purple-800 border-purple-100",
+  "disability-sport":"bg-teal-50 text-teal-800 border-teal-100",
+};
 
 function AccessMeter({ rank }) {
   const cfg = RANK_CONFIG[rank];
@@ -81,7 +94,7 @@ function SchemeCard({ scheme, index }) {
         <div className="flex items-start gap-3 mb-4">
           {/* Index number */}
           <div className="flex-shrink-0 w-9 h-9 bg-sg-light flex items-center justify-center border border-neutral-200">
-            <span className="font-display font-black text-sm text-sg-red">
+            <span className="font-display font-black text-sm text-sg-blue">
               {String(index + 1).padStart(2, "0")}
             </span>
           </div>
@@ -91,6 +104,11 @@ function SchemeCard({ scheme, index }) {
               <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 border ${cfg.bg} ${cfg.text} ${cfg.border}`}>
                 {cfg.shortLabel}
               </span>
+              {scheme.category && SCHEME_CATEGORIES[scheme.category] && (
+                <span className={`text-[10px] font-black uppercase tracking-wider px-2 py-0.5 border ${CATEGORY_BADGE[scheme.category]}`}>
+                  {SCHEME_CATEGORIES[scheme.category].label}
+                </span>
+              )}
             </div>
             <h3 className="font-display font-black text-sg-dark text-lg sm:text-xl leading-tight">
               {scheme.name}
@@ -113,9 +131,9 @@ function SchemeCard({ scheme, index }) {
 
         {/* Stats */}
         <div className="grid grid-cols-2 gap-2 mb-5">
-          <div className="bg-sg-light p-3 border-l-2 border-sg-red">
+          <div className="bg-sg-light p-3 border-l-2 border-sg-blue">
             <div className="flex items-center gap-1 mb-0.5">
-              <DollarSign size={10} className="text-sg-red" />
+              <DollarSign size={10} className="text-sg-blue" />
               <span className="text-[9px] font-black uppercase tracking-widest text-gray-500">Value</span>
             </div>
             <div className="text-xs font-bold text-sg-dark leading-snug">{scheme.estimatedValue}</div>
@@ -154,7 +172,7 @@ function SchemeCard({ scheme, index }) {
         {/* Expand toggle */}
         <button
           onClick={() => setExpanded((e) => !e)}
-          className="flex items-center gap-1.5 text-[11px] font-black text-sg-red hover:text-sg-red-dark uppercase tracking-wider mb-4 transition-colors"
+          className="flex items-center gap-1.5 text-[11px] font-black text-sg-blue hover:text-sg-blue-dark uppercase tracking-wider mb-4 transition-colors"
         >
           {expanded ? <ChevronUp size={13} /> : <ChevronDown size={13} />}
           {expanded ? "Hide Details" : "Documents & Eligibility Criteria"}
@@ -166,13 +184,13 @@ function SchemeCard({ scheme, index }) {
             {/* Documents */}
             <div>
               <div className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-1.5">
-                <FileText size={10} className="text-sg-red" />
+                <FileText size={10} className="text-sg-blue" />
                 Documents You'll Need
               </div>
               <ul className="space-y-2">
                 {scheme.documents.map((doc) => (
                   <li key={doc} className="flex items-start gap-2 text-sm text-gray-600">
-                    <ChevronRight size={12} className="text-sg-red flex-shrink-0 mt-0.5" />
+                    <ChevronRight size={12} className="text-sg-blue flex-shrink-0 mt-0.5" />
                     {doc}
                   </li>
                 ))}
@@ -182,7 +200,7 @@ function SchemeCard({ scheme, index }) {
             {/* Eligibility grid */}
             <div>
               <div className="text-[9px] font-black uppercase tracking-widest text-gray-400 mb-3 flex items-center gap-1.5">
-                <CheckCircle size={10} className="text-sg-red" />
+                <CheckCircle size={10} className="text-sg-blue" />
                 Eligibility at a Glance
               </div>
               <div className="grid grid-cols-2 gap-2">
@@ -222,7 +240,7 @@ function SchemeCard({ scheme, index }) {
           href={scheme.applicationLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-3.5 bg-sg-red hover:bg-sg-red-dark text-white font-black text-[11px] uppercase tracking-widest transition-colors group"
+          className="flex items-center justify-center gap-2 w-full py-3.5 bg-sg-blue hover:bg-sg-blue-dark text-white font-black text-[11px] uppercase tracking-widest transition-colors group"
         >
           Apply on Official Website
           <ExternalLink size={12} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -233,23 +251,27 @@ function SchemeCard({ scheme, index }) {
 }
 
 export default function SchemesPage({ onBack, onStart }) {
-  const [filter, setFilter]   = useState("all");
-  const [search, setSearch]   = useState("");
+  const [filter, setFilter]     = useState("all");
+  const [category, setCategory] = useState("all");
+  const [search, setSearch]     = useState("");
 
   const filtered = SCHEMES.filter((s) => {
-    const matchRank   = filter === "all" || s.accessRank === filter;
-    const matchSearch = search === "" ||
+    const matchRank     = filter === "all" || s.accessRank === filter;
+    const matchCategory = category === "all" || s.category === category;
+    const matchSearch   = search === "" ||
       s.name.toLowerCase().includes(search.toLowerCase()) ||
       s.org.toLowerCase().includes(search.toLowerCase()) ||
-      s.covers.some((c) => c.toLowerCase().includes(search.toLowerCase()));
-    return matchRank && matchSearch;
+      s.covers.some((c) => c.toLowerCase().includes(search.toLowerCase())) ||
+      (s.category && SCHEME_CATEGORIES[s.category]?.label.toLowerCase().includes(search.toLowerCase()));
+    return matchRank && matchCategory && matchSearch;
   });
 
-  const countsByRank = {
-    easy:   SCHEMES.filter((s) => s.accessRank === "easy").length,
-    medium: SCHEMES.filter((s) => s.accessRank === "medium").length,
-    hard:   SCHEMES.filter((s) => s.accessRank === "hard").length,
-  };
+  const countsByCategory = Object.fromEntries(
+    Object.keys(SCHEME_CATEGORIES).map((key) => [
+      key,
+      SCHEMES.filter((s) => s.category === key).length,
+    ])
+  );
 
   return (
     <div className="min-h-screen bg-white">
@@ -277,8 +299,8 @@ export default function SchemesPage({ onBack, onStart }) {
       <section className="bg-sg-dark pt-12 pb-10 px-5 sm:px-8">
         <div className="max-w-5xl mx-auto">
           <div className="inline-flex items-center gap-2 mb-4">
-            <span className="w-2 h-2 rounded-full pulse-red" />
-            <span className="text-red-400 text-[11px] font-black uppercase tracking-widest">
+            <span className="w-2 h-2 rounded-full pulse-blue" />
+            <span className="text-blue-300 text-[11px] font-black uppercase tracking-widest">
               Singapore Youth Sports Funding
             </span>
           </div>
@@ -294,9 +316,9 @@ export default function SchemesPage({ onBack, onStart }) {
           <div className="flex flex-wrap gap-3">
             {[
               { label: `${SCHEMES.length} total schemes`, color: "bg-white/10 text-white" },
-              { label: `${countsByRank.easy} easy to apply`, color: "bg-green-900/40 text-green-300" },
-              { label: `${countsByRank.medium} moderate effort`, color: "bg-amber-900/40 text-amber-300" },
-              { label: `${countsByRank.hard} competitive`, color: "bg-red-900/40 text-red-300" },
+              { label: `${countsByCategory["direct-support"]} direct support`, color: "bg-blue-900/40 text-blue-200" },
+              { label: `${countsByCategory["community-funding"]} community funding`, color: "bg-purple-900/40 text-purple-200" },
+              { label: `${countsByCategory["disability-sport"]} disability sport`, color: "bg-teal-900/40 text-teal-200" },
             ].map((chip) => (
               <span key={chip.label} className={`text-[11px] font-bold uppercase tracking-wider px-3 py-1.5 ${chip.color}`}>
                 {chip.label}
@@ -308,29 +330,48 @@ export default function SchemesPage({ onBack, onStart }) {
 
       {/* Sticky filter bar */}
       <div className="sticky top-14 z-30 bg-white border-b-2 border-neutral-100">
-        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-3 flex flex-col sm:flex-row gap-3">
-          {/* Search */}
-          <div className="relative flex-1">
-            <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
-            <input
-              type="text"
-              placeholder="Search schemes, organisations, what's covered..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-9 pr-4 py-2.5 text-sm border-2 border-neutral-200 focus:border-sg-red focus:outline-none bg-white text-sg-dark placeholder:text-gray-400 font-medium"
-            />
+        <div className="max-w-5xl mx-auto px-5 sm:px-8 py-3 space-y-3">
+          <div className="flex flex-col sm:flex-row gap-3">
+            {/* Search */}
+            <div className="relative flex-1">
+              <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search schemes, organisations, what's covered..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full pl-9 pr-4 py-2.5 text-sm border-2 border-neutral-200 focus:border-sg-blue focus:outline-none bg-white text-sg-dark placeholder:text-gray-400 font-medium"
+              />
+            </div>
+
+            {/* Access filter pills */}
+            <div className="flex gap-2 flex-shrink-0 overflow-x-auto scrollbar-hide">
+              {FILTER_OPTIONS.map((opt) => (
+                <button
+                  key={opt.value}
+                  onClick={() => setFilter(opt.value)}
+                  className={`flex-shrink-0 px-4 py-2.5 text-xs font-black uppercase tracking-wider border-2 transition-all ${
+                    filter === opt.value
+                      ? "bg-sg-blue border-sg-blue text-white"
+                      : "bg-white border-neutral-200 text-gray-600 hover:border-sg-blue hover:text-sg-blue"
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Filter pills */}
-          <div className="flex gap-2 flex-shrink-0 overflow-x-auto scrollbar-hide">
-            {FILTER_OPTIONS.map((opt) => (
+          {/* Category filter pills */}
+          <div className="flex gap-2 overflow-x-auto scrollbar-hide">
+            {CATEGORY_OPTIONS.map((opt) => (
               <button
                 key={opt.value}
-                onClick={() => setFilter(opt.value)}
-                className={`flex-shrink-0 px-4 py-2.5 text-xs font-black uppercase tracking-wider border-2 transition-all ${
-                  filter === opt.value
-                    ? "bg-sg-red border-sg-red text-white"
-                    : "bg-white border-neutral-200 text-gray-600 hover:border-sg-red hover:text-sg-red"
+                onClick={() => setCategory(opt.value)}
+                className={`flex-shrink-0 px-4 py-2 text-xs font-black uppercase tracking-wider border-2 transition-all ${
+                  category === opt.value
+                    ? "bg-sg-dark border-sg-dark text-white"
+                    : "bg-white border-neutral-200 text-gray-600 hover:border-sg-dark hover:text-sg-dark"
                 }`}
               >
                 {opt.label}
@@ -350,10 +391,10 @@ export default function SchemesPage({ onBack, onStart }) {
             <span className="text-sg-dark">{filtered.length}</span>{" "}
             of {SCHEMES.length} schemes
           </div>
-          {(filter !== "all" || search) && (
+          {(filter !== "all" || category !== "all" || search) && (
             <button
-              onClick={() => { setFilter("all"); setSearch(""); }}
-              className="text-xs font-bold text-sg-red hover:underline uppercase tracking-wider"
+              onClick={() => { setFilter("all"); setCategory("all"); setSearch(""); }}
+              className="text-xs font-bold text-sg-blue hover:underline uppercase tracking-wider"
             >
               Clear filters
             </button>
@@ -392,7 +433,7 @@ export default function SchemesPage({ onBack, onStart }) {
               Try a different search term or remove the filter.
             </p>
             <button
-              onClick={() => { setFilter("all"); setSearch(""); }}
+              onClick={() => { setFilter("all"); setCategory("all"); setSearch(""); }}
               className="btn-primary text-xs px-6 py-3"
             >
               Clear Filters
@@ -403,7 +444,7 @@ export default function SchemesPage({ onBack, onStart }) {
         {/* Quiz CTA */}
         <div className="mt-14 bg-sg-dark p-7 sm:p-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div>
-            <div className="text-sg-red text-[10px] font-black uppercase tracking-widest mb-2">
+            <div className="text-sg-blue text-[10px] font-black uppercase tracking-widest mb-2">
               Not sure where to start?
             </div>
             <h3 className="font-display font-black text-white text-xl sm:text-2xl mb-1">

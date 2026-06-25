@@ -170,7 +170,7 @@ export default function Quiz({ onComplete, onBack }) {
               <span className="text-gray-400 text-[11px] font-bold uppercase tracking-widest">
                 Question {step + 1} of {total}
               </span>
-              <span className="text-sg-red text-[11px] font-bold">
+              <span className="text-sg-blue text-[11px] font-bold">
                 {Math.round(progress)}%
               </span>
             </div>
@@ -199,7 +199,7 @@ export default function Quiz({ onComplete, onBack }) {
           {/* Question header */}
           <div className="mb-7">
             <div className="inline-flex items-center gap-2 mb-3">
-              <span className="bg-sg-red text-white text-[11px] font-black px-2.5 py-1 uppercase tracking-widest">
+              <span className="bg-sg-blue text-white text-[11px] font-black px-2.5 py-1 uppercase tracking-widest">
                 Step {step + 1}
               </span>
             </div>
@@ -233,7 +233,7 @@ export default function Quiz({ onComplete, onBack }) {
                     {opt.label}
                   </span>
                   {opt.note && current.columns === 1 && (
-                    <span className={`option-note block text-xs font-normal mt-0.5 ${isSelected ? "text-red-100" : "text-gray-400"}`}>
+                    <span className={`option-note block text-xs font-normal mt-0.5 ${isSelected ? "text-blue-100" : "text-gray-400"}`}>
                       {opt.note}
                     </span>
                   )}
@@ -249,7 +249,7 @@ export default function Quiz({ onComplete, onBack }) {
         <div className="max-w-2xl mx-auto flex gap-3">
           <button
             onClick={handlePrev}
-            className="flex-shrink-0 flex items-center gap-2 px-5 py-3.5 border-2 border-neutral-200 hover:border-sg-red hover:text-sg-red text-gray-600 font-bold text-sm uppercase tracking-wider transition-all"
+            className="flex-shrink-0 flex items-center gap-2 px-5 py-3.5 border-2 border-neutral-200 hover:border-sg-blue hover:text-sg-blue text-gray-600 font-bold text-sm uppercase tracking-wider transition-all"
           >
             <ArrowLeft size={16} />
             Back
@@ -259,7 +259,7 @@ export default function Quiz({ onComplete, onBack }) {
             disabled={!selected}
             className={`flex-1 flex items-center justify-center gap-2 py-3.5 font-bold text-sm uppercase tracking-wider transition-all ${
               selected
-                ? "bg-sg-red hover:bg-sg-red-dark text-white cursor-pointer"
+                ? "bg-sg-blue hover:bg-sg-blue-dark text-white cursor-pointer"
                 : "bg-neutral-100 text-neutral-400 cursor-not-allowed"
             }`}
           >

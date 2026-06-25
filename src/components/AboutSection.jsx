@@ -1,15 +1,16 @@
 import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
+import { SCHEMES } from "../data/schemes";
 
 const VALUES = [
   {
-    icon: "❤️",
+    icon: "💙",
     label: "Built for families who need it most",
     body: "We focus on low-income Singapore families — parents and guardians who want the best for their children but face real financial barriers to sport participation.",
   },
   {
     icon: "🔒",
-    label: "Privacy-first by design",
-    body: "We collect zero personal data. No names, no NRIC numbers, no contact details. Your quiz answers are only used in your browser and never sent to any server.",
+    label: "Privacy-aware by design",
+    body: "Log in to take the quiz and save your results. Your answers stay in your browser, and the tool never asks for NRIC numbers or sensitive identity documents.",
   },
   {
     icon: "⚡",
@@ -60,20 +61,20 @@ export default function AboutSection({ onBack, onStart }) {
           <div
             className="absolute inset-0 opacity-10"
             style={{
-              backgroundImage: 'linear-gradient(#E31837 1px, transparent 1px), linear-gradient(90deg, #E31837 1px, transparent 1px)',
+              backgroundImage: 'linear-gradient(#2563EB 1px, transparent 1px), linear-gradient(90deg, #2563EB 1px, transparent 1px)',
               backgroundSize: '48px 48px',
             }}
           />
           <div className="relative max-w-4xl mx-auto px-5 sm:px-8">
             <div className="inline-flex items-center gap-2 mb-5">
-              <span className="w-2 h-2 rounded-full pulse-red" />
-              <span className="text-red-400 text-xs font-bold uppercase tracking-widest">
+              <span className="w-2 h-2 rounded-full pulse-blue" />
+              <span className="text-blue-300 text-xs font-bold uppercase tracking-widest">
                 About This Project
               </span>
             </div>
             <h1 className="font-display font-black text-3xl sm:text-5xl text-white mb-5 text-balance leading-none">
               Removing barriers to sport<br />
-              <span className="text-sg-red">for every child in Singapore</span>
+              <span className="text-sg-blue">for every child in Singapore</span>
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl leading-relaxed">
               Sports Access Navigator was created to solve a specific problem:
@@ -95,7 +96,7 @@ export default function AboutSection({ onBack, onStart }) {
               <div className="space-y-4 text-gray-600 text-base leading-relaxed">
                 <p>
                   Singapore has{" "}
-                  <strong className="text-sg-dark">more than 8 significant funding schemes</strong>{" "}
+                  <strong className="text-sg-dark">more than {SCHEMES.length} significant funding schemes</strong>{" "}
                   for youth sport — from government bursaries to private scholarships.
                   But this landscape is fragmented across multiple agencies, websites,
                   and portals.
@@ -153,12 +154,12 @@ export default function AboutSection({ onBack, onStart }) {
                   href={org.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between px-5 py-4 bg-white border border-neutral-200 hover:border-sg-red hover:bg-red-50 group transition-all"
+                  className="flex items-center justify-between px-5 py-4 bg-white border border-neutral-200 hover:border-sg-blue hover:bg-blue-50 group transition-all"
                 >
-                  <span className="font-semibold text-gray-700 group-hover:text-sg-red text-sm transition-colors">
+                  <span className="font-semibold text-gray-700 group-hover:text-sg-blue text-sm transition-colors">
                     {org.name}
                   </span>
-                  <div className="flex items-center gap-1 text-gray-400 group-hover:text-sg-red">
+                  <div className="flex items-center gap-1 text-gray-400 group-hover:text-sg-blue">
                     <ExternalLink size={13} />
                   </div>
                 </a>
@@ -190,7 +191,7 @@ export default function AboutSection({ onBack, onStart }) {
         {/* CTA */}
         <section className="py-16 sm:py-20 bg-sg-dark">
           <div className="max-w-2xl mx-auto px-5 sm:px-8 text-center">
-            <div className="section-eyebrow text-red-400 mb-3">Ready?</div>
+            <div className="section-eyebrow text-blue-300 mb-3">Ready?</div>
             <h2 className="font-display font-black text-3xl sm:text-4xl text-white mb-4 text-balance leading-tight">
               Find funding for your child now
             </h2>

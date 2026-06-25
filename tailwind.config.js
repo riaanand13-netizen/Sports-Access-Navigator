@@ -11,8 +11,9 @@ export default {
         display: ['Barlow', 'Inter', 'sans-serif'],
       },
       colors: {
-        'sg-red':     '#E31837',
-        'sg-red-dark':'#C41230',
+        'sg-blue':     '#2563EB',
+        'sg-blue-dark':'#1D4ED8',
+        'sg-blue-darker':'#1E40AF',
         'sg-dark':    '#1A1A1A',
         'sg-gray':    '#6B7280',
         'sg-light':   '#F7F7F7',

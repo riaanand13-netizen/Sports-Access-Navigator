@@ -37,17 +37,17 @@ const RANK_CONFIG = {
   hard: {
     label: "Requires more work",
     shortLabel: "Competitive",
-    bg: "bg-red-50",
-    text: "text-red-800",
-    border: "border-red-200",
-    barColor: "bg-sg-red",
+    bg: "bg-blue-50",
+    text: "text-blue-800",
+    border: "border-indigo-200",
+    barColor: "bg-sg-blue",
     stars: 1,
   },
 };
 
 const MATCH_LABEL = {
-  strong:  { label: "Strong match",   bg: "bg-sg-red",    text: "text-white" },
-  good:    { label: "Good match",     bg: "bg-red-100",   text: "text-sg-red" },
+  strong:  { label: "Strong match",   bg: "bg-sg-blue",    text: "text-white" },
+  good:    { label: "Good match",     bg: "bg-blue-100",   text: "text-sg-blue" },
   partial: { label: "Possible match", bg: "bg-neutral-100", text: "text-gray-600" },
 };
 
@@ -72,10 +72,10 @@ function SchemeCard({ scheme, index }) {
   const matchCfg = MATCH_LABEL[scheme.matchStrength];
 
   return (
-    <div className={`bg-white border-2 ${index === 0 ? "border-sg-red" : "border-neutral-100"} relative overflow-hidden`}>
+    <div className={`bg-white border-2 ${index === 0 ? "border-sg-blue" : "border-neutral-100"} relative overflow-hidden`}>
       {/* Best match ribbon */}
       {index === 0 && (
-        <div className="bg-sg-red px-5 py-2 flex items-center gap-2">
+        <div className="bg-sg-blue px-5 py-2 flex items-center gap-2">
           <Star size={12} className="fill-yellow-300 text-yellow-300 flex-shrink-0" />
           <span className="text-white text-xs font-black uppercase tracking-widest">
             Best Match — Start Here
@@ -125,9 +125,9 @@ function SchemeCard({ scheme, index }) {
 
         {/* Stats grid */}
         <div className="grid grid-cols-2 gap-2 mb-5">
-          <div className="bg-sg-light p-3.5 border-l-2 border-sg-red">
+          <div className="bg-sg-light p-3.5 border-l-2 border-sg-blue">
             <div className="flex items-center gap-1 mb-1">
-              <DollarSign size={11} className="text-sg-red" />
+              <DollarSign size={11} className="text-sg-blue" />
               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Value</span>
             </div>
             <div className="text-sm font-bold text-sg-dark leading-snug">{scheme.estimatedValue}</div>
@@ -182,7 +182,7 @@ function SchemeCard({ scheme, index }) {
         {/* Expand toggle */}
         <button
           onClick={() => setExpanded((e) => !e)}
-          className="flex items-center gap-1.5 text-xs font-bold text-sg-red hover:text-sg-red-dark uppercase tracking-wider mb-5 transition-colors"
+          className="flex items-center gap-1.5 text-xs font-bold text-sg-blue hover:text-sg-blue-dark uppercase tracking-wider mb-5 transition-colors"
         >
           {expanded ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
           {expanded ? "Hide Details" : "Show Documents & Eligibility"}
@@ -194,13 +194,13 @@ function SchemeCard({ scheme, index }) {
             {/* Documents */}
             <div>
               <div className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-1.5">
-                <FileText size={11} className="text-sg-red" />
+                <FileText size={11} className="text-sg-blue" />
                 Documents You'll Need
               </div>
               <ul className="space-y-2">
                 {scheme.documents.map((doc) => (
                   <li key={doc} className="flex items-start gap-2.5 text-sm text-gray-600">
-                    <ChevronRight size={13} className="text-sg-red flex-shrink-0 mt-0.5" />
+                    <ChevronRight size={13} className="text-sg-blue flex-shrink-0 mt-0.5" />
                     {doc}
                   </li>
                 ))}
@@ -210,7 +210,7 @@ function SchemeCard({ scheme, index }) {
             {/* Eligibility grid */}
             <div>
               <div className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-3 flex items-center gap-1.5">
-                <CheckCircle size={11} className="text-sg-red" />
+                <CheckCircle size={11} className="text-sg-blue" />
                 Eligibility at a Glance
               </div>
               <div className="grid grid-cols-2 gap-2">
@@ -250,7 +250,7 @@ function SchemeCard({ scheme, index }) {
           href={scheme.applicationLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full py-4 bg-sg-red hover:bg-sg-red-dark text-white font-black text-xs uppercase tracking-widest transition-colors group mt-1"
+          className="flex items-center justify-center gap-2 w-full py-4 bg-sg-blue hover:bg-sg-blue-dark text-white font-black text-xs uppercase tracking-widest transition-colors group mt-1"
         >
           Apply on Official Website
           <ExternalLink size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -323,20 +323,20 @@ export default function Results({ results, answers, onRestart, onBack }) {
           <div className="bg-sg-dark p-6 sm:p-7 mb-6 page-enter">
             <div className="flex items-start justify-between gap-4">
               <div>
-                <div className="text-sg-red text-[11px] font-black uppercase tracking-widest mb-2">
+                <div className="text-sg-blue text-[11px] font-black uppercase tracking-widest mb-2">
                   Matching Results
                 </div>
                 <h1 className="font-display font-black text-white text-2xl sm:text-3xl leading-tight mb-3">
                   {count} scheme{count !== 1 ? "s" : ""} found
                   <br />
-                  <span className="text-sg-red">for your child</span>
+                  <span className="text-sg-blue">for your child</span>
                 </h1>
                 <p className="text-gray-400 text-sm">
                   Ranked easiest-first. Start with the first card.
                 </p>
               </div>
               <div className="text-center flex-shrink-0">
-                <div className="font-display font-black text-5xl sm:text-6xl text-sg-red leading-none">
+                <div className="font-display font-black text-5xl sm:text-6xl text-sg-blue leading-none">
                   {count}
                 </div>
                 <div className="text-gray-500 text-[10px] uppercase tracking-widest font-bold mt-1">
@@ -418,7 +418,7 @@ export default function Results({ results, answers, onRestart, onBack }) {
           <div className="mt-6 text-center">
             <button
               onClick={onRestart}
-              className="flex items-center gap-2 mx-auto text-gray-400 hover:text-sg-red text-xs font-bold uppercase tracking-wider transition-colors"
+              className="flex items-center gap-2 mx-auto text-gray-400 hover:text-sg-blue text-xs font-bold uppercase tracking-wider transition-colors"
             >
               <RefreshCw size={13} />
               Start Over with New Answers
